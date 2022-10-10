@@ -1,0 +1,20 @@
+{
+    "name": "vision/framework",
+    "description": "Another php laravel inspired framework.",
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "src/Helpers/global.php"
+        ],
+        "psr-4": {
+            "Vision\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Noah Wilderom",
+            "email": "wilderomnoah@gmail.com"
+        }
+    ],
+    "require": {}
+}
