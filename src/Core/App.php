@@ -8,7 +8,12 @@ use Vision\Core\Request;
 class App
 {
 
+    /**
+     * @var Request request
+     */
     private static Request $request;
+
+    private static $basePath;
 
     public function __construct()
     {
@@ -17,6 +22,7 @@ class App
 
     public static function init(): void
     {
+        static::$basePath = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
         static::$request = new Request();
     }
 
@@ -39,6 +45,6 @@ class App
 
     public static function getRootPath(): string
     {
-        return dirname(__DIR__);
+        return static::$basePath;
     }
 }
