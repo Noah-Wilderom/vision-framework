@@ -22,12 +22,15 @@ class App
 
     public static function init(): void
     {
+        // Define the absolute path off the project directory
         static::$basePath = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+        // Initialize the Request
         static::$request = new Request();
     }
 
     public function prepare($path): App
     {
+        // Capture the incoming request
         static::$request = static::$request->capture();
 
         return $this;
@@ -46,5 +49,10 @@ class App
     public static function getRootPath(): string
     {
         return static::$basePath;
+    }
+
+    public static function getConfigPath(): string
+    {
+        return static::$basePath . DIRECTORY_SEPARATOR . 'config';
     }
 }

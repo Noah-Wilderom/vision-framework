@@ -1,6 +1,7 @@
 <?php
 
 use Vision\Core\App;
+use Vision\Config;
 use Vision\Helpers\Dumper;
 
 if (!function_exists('app'))
@@ -40,5 +41,32 @@ if (!function_exists('root_path'))
     function root_path()
     {
         return App::getRootPath();
+    }
+}
+
+if (!function_exists('config_path'))
+{
+    /**
+     * Get the config path
+     *
+     * @return string path
+     */
+    function config_path()
+    {
+        return App::getConfigPath();
+    }
+}
+
+if (!function_exists('env'))
+{
+    /**
+     * Get the config path
+     *
+     * @param string item
+     * @return string env
+     */
+    function env(string $item)
+    {
+        return Config\Handler::getEnv($item);
     }
 }
