@@ -35,4 +35,9 @@ class Core {
         //
     }
 
+    public function getRootPath()
+    {
+        return dirname(__DIR__);
+    }
+
 }

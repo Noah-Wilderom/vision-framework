@@ -21,8 +21,6 @@
         "ext-openssl": "*",
         "ext-json": "*",
         "vlucas/phpdotenv": "^5.4.1"
-
-
     },
     "repositories": {
         "packagist.org": false,

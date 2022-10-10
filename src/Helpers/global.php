@@ -27,3 +27,15 @@ if (! function_exists('dump')) {
         return new Dumper(...$values);
     }
 }
+
+if (! function_exists('root_path')) {
+    /**
+     * Get the root path
+     *
+     * @return string path
+     */
+    function root_path()
+    {
+        return Core::getRootPath();
+    }
+}
