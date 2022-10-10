@@ -16,7 +16,10 @@
             "email": "wilderomnoah@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "^7.3|^8.0"
+
+    },
     "repositories": {
         "packagist.org": false,
         "private-packagist": {

@@ -1,0 +1,19 @@
+{
+    "name": "vision/framework",
+    "description": "Another php laravel inspired framework.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Noah Wilderom",
+            "email": "wilderomnoah@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vision\\Database\\": ""
+        }
+    }
+}
