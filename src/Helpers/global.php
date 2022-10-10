@@ -60,7 +60,7 @@ if (!function_exists('config_path'))
 if (!function_exists('env'))
 {
     /**
-     * Get the config path
+     * Get a env value
      *
      * @param string item
      * @return string env
@@ -68,5 +68,19 @@ if (!function_exists('env'))
     function env(string $item)
     {
         return Config\Handler::getEnv($item);
+    }
+}
+
+if (!function_exists('config'))
+{
+    /**
+     * Get a config value
+     *
+     * @param string item
+     * @return string config
+     */
+    function config(string $key = null)
+    {
+        return Config\Handler::getConfig($key);
     }
 }

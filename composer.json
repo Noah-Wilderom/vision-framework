@@ -1,32 +1,33 @@
 {
-    "name": "vision/framework",
-    "description": "Another php laravel inspired framework.",
-    "license": "MIT",
-    "autoload": {
-        "files": [
-            "src/Helpers/global.php"
-        ],
-        "psr-4": {
-            "Vision\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Noah Wilderom",
-            "email": "wilderomnoah@gmail.com"
-        }
+  "name": "vision/framework",
+  "description": "Another php laravel inspired framework.",
+  "license": "MIT",
+  "autoload": {
+    "files": [
+      "src/Helpers/global.php"
     ],
-    "require": {
-        "php": "^7.3|^8.0",
-        "ext-openssl": "*",
-        "ext-json": "*",
-        "vlucas/phpdotenv": "^5.4.1"
-    },
-    "repositories": {
-        "packagist.org": false,
-        "private-packagist": {
-            "type": "composer",
-            "url": "https://repo.packagist.com/vision-framework/"
-        }
+    "psr-4": {
+      "Vision\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "Noah Wilderom",
+      "email": "wilderomnoah@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.3|^8.0",
+    "ext-openssl": "*",
+    "ext-json": "*",
+    "vlucas/phpdotenv": "^5.4.1",
+    "symfony/finder": "^6.1"
+  },
+  "repositories": {
+    "packagist.org": false,
+    "private-packagist": {
+      "type": "composer",
+      "url": "https://repo.packagist.com/vision-framework/"
+    }
+  }
 }
