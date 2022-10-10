@@ -9,6 +9,7 @@ class Handler
 {
 
     protected static $env;
+    protected $dotEnvDriver;
 
     public function __construct()
     {
@@ -17,8 +18,8 @@ class Handler
 
     public static function initEnv(): array
     {
-        $dotenv = Dotenv::createImmutable(root_path());
-        $dotenv->safeLoad();
+        self::$dotEnvDriver = Dotenv::createImmutable(root_path());
+        self::$dotEnvDriver->safeLoad();
 
         return static::setEnv();
     }
@@ -26,7 +27,7 @@ class Handler
     private static function setEnv(): array
     {
         $env = $_ENV;
-        $_ENV = false;
+        // $_ENV = false;
 
         foreach ($_SERVER as $key => $value)
         {
