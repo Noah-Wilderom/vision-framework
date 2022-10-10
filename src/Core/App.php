@@ -1,9 +1,12 @@
 <?php
 
-namespace Vision;
+namespace Vision\Core;
+
+use Vision\Core\Request;
 
 
-class Core {
+class App
+{
 
     private static Request $request;
 
@@ -39,5 +42,4 @@ class Core {
     {
         return dirname(__DIR__);
     }
-
 }

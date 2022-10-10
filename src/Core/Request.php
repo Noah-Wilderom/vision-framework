@@ -1,9 +1,10 @@
 <?php
 
-namespace Vision;
+namespace Vision\Core;
 
 
-class Request {
+class Request
+{
 
     public function __construct()
     {
@@ -19,5 +20,4 @@ class Request {
     {
         //
     }
-
 }
