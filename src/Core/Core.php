@@ -2,7 +2,10 @@
 
 namespace Vision;
 
+
 class Core {
+
+    private static Request $request;
 
     public function __construct()
     {
@@ -16,7 +19,15 @@ class Core {
 
     public function prepare($path)
     {
-        //
+        static::$request = Request::capture();
+
+
+        return $this;
+    }
+
+    public function getRequest()
+    {
+        return static::$request ?: false;
     }
 
     public function build()
