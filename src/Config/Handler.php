@@ -72,14 +72,16 @@ class Handler
     {
         foreach (static::$config as $config)
         {
-            $group = $config[explode('.', $item)[0]];
-            if (isset($group) && is_array($group))
+            if (in_array(explode('.', $item)[0], array_keys($config)))
             {
-                $item = explode('.', $item)[1];
-                return in_array($item, array_keys($group)) ? $group[$item] : false;
+                $group = $config[explode('.', $item)[0]];
+                if (isset($group) && is_array($group))
+                {
+                    $item = explode('.', $item)[1];
+                    return in_array($item, array_keys($group)) ? $group[$item] : false;
+                }
             }
         }
-
 
         return false;
     }
