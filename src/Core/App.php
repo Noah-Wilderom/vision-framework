@@ -3,6 +3,7 @@
 namespace Vision\Core;
 
 use Vision\Core\Request;
+use Vision\Config;
 
 
 class App
@@ -43,7 +44,7 @@ class App
 
     public function build(): void
     {
-        //
+        $this->config = new Config\Handler;
     }
 
     public static function getRootPath(): string
