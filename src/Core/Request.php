@@ -16,8 +16,8 @@ class Request
         // 
     }
 
-    public static function capture(): void
+    public function capture(): Request
     {
-        //
+        return $this; // For testing only atm
     }
 }

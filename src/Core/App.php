@@ -17,13 +17,12 @@ class App
 
     public static function init(): void
     {
-        // 
+        static::$request = new Request();
     }
 
     public function prepare($path): App
     {
-        static::$request = Request::capture();
-
+        static::$request = static::$request->capture();
 
         return $this;
     }
