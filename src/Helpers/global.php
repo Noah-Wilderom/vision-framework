@@ -1,21 +1,23 @@
 <?php
 
-use Vision\Core;
+use Vision\Core\App;
 use Vision\Helpers\Dumper;
 
-if (! function_exists('app')) {
+if (!function_exists('app'))
+{
     /**
      * Creates a app instance
      *
-     * @return \Vision\Core
+     * @return \Vision\Core\App
      */
     function app()
     {
-        return new Core();
+        return new App();
     }
 }
 
-if (! function_exists('dump')) {
+if (!function_exists('dump'))
+{
     /**
      * Dumps the values
      *
@@ -28,7 +30,8 @@ if (! function_exists('dump')) {
     }
 }
 
-if (! function_exists('root_path')) {
+if (!function_exists('root_path'))
+{
     /**
      * Get the root path
      *
@@ -36,6 +39,6 @@ if (! function_exists('root_path')) {
      */
     function root_path()
     {
-        return Core::getRootPath();
+        return App::getRootPath();
     }
 }

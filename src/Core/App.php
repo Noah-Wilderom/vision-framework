@@ -20,7 +20,7 @@ class App
         // 
     }
 
-    public function prepare($path)
+    public function prepare($path): App
     {
         static::$request = Request::capture();
 
@@ -28,17 +28,17 @@ class App
         return $this;
     }
 
-    public function getRequest()
+    public function getRequest(): Request
     {
         return static::$request ?: false;
     }
 
-    public function build()
+    public function build(): void
     {
         //
     }
 
-    public function getRootPath()
+    public static function getRootPath(): string
     {
         return dirname(__DIR__);
     }

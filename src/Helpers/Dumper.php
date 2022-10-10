@@ -2,20 +2,21 @@
 
 namespace Vision\Helpers;
 
-class Dumper {
+class Dumper
+{
 
 
     public function __construct($values)
     {
         $this->values = $values;
 
-        if(! empty($this->values) )
+        if (!empty($this->values))
         {
             $this->handle();
         }
     }
 
-    private function handle()
+    private function handle(): void
     {
         //
     }

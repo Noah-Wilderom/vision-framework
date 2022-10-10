@@ -16,7 +16,7 @@ class Request
         // 
     }
 
-    public static function capture()
+    public static function capture(): void
     {
         //
     }
