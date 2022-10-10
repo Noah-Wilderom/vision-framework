@@ -13,12 +13,12 @@ class Handler
     protected static $env;
     protected static $dotEnvDriver;
 
-    protected static $config;
+    protected static $config = [];
 
     public function __construct()
     {
         static::$env = $this->initEnv();
-        static::$config = $this->initConfig();
+        $this->initConfig();
     }
 
     private function initEnv(): array
@@ -49,12 +49,39 @@ class Handler
 
     private function initConfig()
     {
-        return $this->getConfigFiles();
+        $files = $this->getConfigFiles();
+        foreach ($files as $key => $path)
+        {
+            $this->setConfig($key, require $path);
+        }
+
+        return;
+    }
+
+    private function setConfig($key, $value = null)
+    {
+        $keys = is_array($key) ? $key : [$key => $value];
+
+        foreach ($keys as $key => $value)
+        {
+            self::$config[] = [$key => $value];
+        }
     }
 
     public static function getConfig(string $item): mixed
     {
-        return in_array($item, array_keys(static::$config)) ? static::$config[$item] : false;
+        foreach (static::$config as $config)
+        {
+            $group = $config[explode('.', $item)[0]];
+            if (isset($group) && is_array($group))
+            {
+                $item = explode('.', $item)[1];
+                return in_array($item, array_keys($group)) ? $group[$item] : false;
+            }
+        }
+
+
+        return false;
     }
 
     private function getConfigFiles()
