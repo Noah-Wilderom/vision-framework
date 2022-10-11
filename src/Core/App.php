@@ -54,11 +54,14 @@ class App
         static::$request = static::$request->capture();
     }
 
-    public function kernel(): void
+    public function buildKernel($args): void
     {
+        //Initialize the Config handler
+        static::$config = new Config\Handler;
+
         $this->kernel = new Kernel();
 
-        if (empty($argv))
+        if (empty($args))
         {
             $this->kernel->help();
             return;
