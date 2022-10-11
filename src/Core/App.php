@@ -2,8 +2,9 @@
 
 namespace Vision\Core;
 
-use Vision\Core\Request;
 use Vision\Config;
+use Vision\Core\Request;
+use Vision\Console\Kernel;
 
 
 class App
@@ -17,6 +18,8 @@ class App
     private static $basePath;
 
     private static Config\Handler $config;
+
+    private Kernel $kernel;
 
     public function __construct()
     {
@@ -49,6 +52,17 @@ class App
 
         // Capture the incoming request
         static::$request = static::$request->capture();
+    }
+
+    public function kernel(): void
+    {
+        $this->kernel = new Kernel();
+
+        if (empty($argv))
+        {
+            $this->kernel->help();
+            return;
+        }
     }
 
     public static function getRootPath(): string

@@ -37,8 +37,6 @@ class Request
             if (!in_array($req, static::$requestBlacklist)) return [$req => $value];
         }, array_keys($_SERVER), array_values($_SERVER));
 
-        print_r($request);
-
         return $this;
     }
 }
