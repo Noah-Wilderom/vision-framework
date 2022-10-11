@@ -16,6 +16,8 @@ class App
 
     private static $basePath;
 
+    private static Config\Handler $config;
+
     public function __construct()
     {
         static::init();
@@ -25,15 +27,10 @@ class App
     {
         // Define the absolute path off the project directory
         static::$basePath = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
-        // Initialize the Request
-        static::$request = new Request();
     }
 
     public function prepare($path): App
     {
-        // Capture the incoming request
-        static::$request = static::$request->capture();
-
         return $this;
     }
 
@@ -44,7 +41,14 @@ class App
 
     public function build(): void
     {
-        $this->config = new Config\Handler;
+        //Initialize the Config handler
+        static::$config = new Config\Handler;
+
+        // Initialize the Request
+        static::$request = new Request();
+
+        // Capture the incoming request
+        static::$request = static::$request->capture();
     }
 
     public static function getRootPath(): string

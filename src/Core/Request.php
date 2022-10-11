@@ -15,7 +15,7 @@ class Request
 
     public static function init(): void
     {
-        //
+        static::$requestBlacklist = config('http.blacklistedParams');
     }
 
     public static function addToRequestBlacklist(string $item): bool
@@ -32,9 +32,12 @@ class Request
     {
         $request = [];
 
-        $request['server'] = array_map(function ($req)
+        $request['server'] = array_map(function ($req, $value)
         {
+            if (!in_array($req, static::$requestBlacklist)) return [$req => $value];
         }, array_keys($_SERVER), array_values($_SERVER));
+
+        print_r($request);
 
         return $this;
     }

@@ -32,11 +32,11 @@ class Handler
     private static function setEnv(): array
     {
         $env = $_ENV;
-        $_ENV = false;
+        $_ENV = "Env files are accessible through the 'config' global function.";
 
-        foreach ($_SERVER as $key => $value)
+        foreach (array_keys($_SERVER) as $key)
         {
-            if (isset($env[$key])) $_SERVER[$key] = null;
+            if (isset($env[$key])) unset($_SERVER[$key]);
         }
 
         return $env;
