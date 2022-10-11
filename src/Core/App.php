@@ -61,6 +61,8 @@ class App
 
         $this->kernel = new Kernel();
 
+        array_shift($args);
+
         if (empty($args))
         {
             $this->kernel->help();
