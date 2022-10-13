@@ -12,7 +12,7 @@ class Request
     {
         static::init();
         // Capture the current request
-        $this->capture();
+        $this->request = $this->capture();
     }
 
     public static function init(): void
