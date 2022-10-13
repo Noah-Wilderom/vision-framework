@@ -20,28 +20,14 @@ abstract class Facade
     }
 
     /**
-     * The resolved object instances.
-     *
-     * @var array
-     */
-    protected static $resolvedInstance;
-
-    /**
      * Get the root object behind the facade.
      *
      * @return mixed
      */
     public static function getFacadeRoot()
     {
-        return static::resolveFacadeInstance(static::getFacadeAccessor());
-    }
-
-    protected static function resolveFacadeInstance($name)
-    {
-        if (isset(static::$resolvedInstance[$name]))
-        {
-            return static::$resolvedInstance[$name];
-        }
+        $class = static::getFacadeAccessor();
+        return new $class;
     }
 
     /**

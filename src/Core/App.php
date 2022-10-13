@@ -23,12 +23,9 @@ class App
 
     private Kernel $kernel;
 
-    private Route $routes;
-
     public function __construct()
     {
         static::init();
-        $this->routes = new Route();
     }
 
     public static function init(): void
@@ -60,7 +57,7 @@ class App
 
     private function setRouting(): void
     {
-        $routes = $this->routes->getRoutes()->all()->toArray();
+        $routes = Route::getRoutes()->all()->toArray();
 
         if ($uri = array_search($this->getURL(), array_keys($routes)))
         {
