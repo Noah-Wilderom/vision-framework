@@ -8,34 +8,37 @@
     <title><?php echo config('app.name') ?></title>
     <style>
         body {
-            background: darkblue;
+            background: #000124;
             text-align: center;
         }
 
-        span {
-            font-size: 25px;
+        h1 {
+            font-size: 65px;
+            color: #fff;
             display: flex;
-
+            text-align: center;
+            justify-content: center;
         }
 
         p {
-            font-size: 15px;
-            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            color: lightgrey;
         }
 
         #root {
-            margin-top: 20%;
+            margin-top: 10%;
         }
     </style>
 </head>
 
 <body>
     <div id="root">
-        <span>
+        <h1>
             <?php
             echo $error['code']
             ?>
-        </span>
+        </h1>
 
         <p>
             <?php
