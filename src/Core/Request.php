@@ -25,6 +25,11 @@ class Request
         return in_array($item, static::$requestBlacklist) ? (bool) static::$requestBlacklist[] = $item : false;
     }
 
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
     public function capture(): Request
     {
         return $this->captureCurrentRequest();

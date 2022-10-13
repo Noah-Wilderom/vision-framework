@@ -3,7 +3,9 @@
 namespace Vision\Core;
 
 use Vision\Config;
+use ReflectionMethod;
 use Vision\Core\Request;
+use Vision\Facades\Route;
 use Vision\Console\Kernel;
 
 
@@ -21,9 +23,12 @@ class App
 
     private Kernel $kernel;
 
+    private Route $routes;
+
     public function __construct()
     {
         static::init();
+        $this->routes = new Route();
     }
 
     public static function init(): void
@@ -49,6 +54,31 @@ class App
 
         // Initialize the Request
         $this->request = new Request();
+
+        $this->setRouting();
+    }
+
+    private function setRouting(): void
+    {
+        $routes = $this->routes->getRoutes()->all()->toArray();
+
+        if ($uri = array_search($this->getURL(), array_keys($routes)))
+        {
+            $route = $routes[$uri];
+
+            $obj = new $route['controller'];
+
+            $method = new ReflectionMethod($obj, $route['action']);
+            foreach ($method->getParameters() as $arg)
+            {
+                if ($arg->getType() instanceof Route)
+                {
+                    $obj->{$route['action']}($this->request);
+                }
+            }
+
+            $obj->{$route['action']}();
+        }
     }
 
     public function buildKernel($args): void
@@ -75,5 +105,16 @@ class App
     public static function getConfigPath(): string
     {
         return static::$basePath . DIRECTORY_SEPARATOR . 'config';
+    }
+
+    public function getURL()
+    {
+        if ($this->request->getRequest()->get('url'))
+        {
+            $url = rtrim($this->request->getRequest()->get('url'), '/');
+            // Filter de url van alles wat niet in een url thuishoort 
+            $url = filter_var($url, FILTER_SANITIZE_URL);
+            return $url;
+        }
     }
 }
