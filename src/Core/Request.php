@@ -12,7 +12,7 @@ class Request
     {
         static::init();
         // Capture the current request
-        $this->request = $this->capture();
+        $this->capture();
     }
 
     public static function init(): void
@@ -60,6 +60,8 @@ class Request
             array_keys($_POST),
             array_values($_POST)
         ));
+
+        $this->request = $request;
 
         return $this;
     }
