@@ -13,7 +13,7 @@ class App
     /**
      * @var Request request
      */
-    private static Request $request;
+    private Request $request;
 
     private static $basePath;
 
@@ -39,7 +39,7 @@ class App
 
     public function getRequest(): Request
     {
-        return static::$request ?: false;
+        return $this->request ?: false;
     }
 
     public function build(): void
@@ -49,9 +49,6 @@ class App
 
         // Initialize the Request
         static::$request = new Request();
-
-        // Capture the incoming request
-        static::$request = static::$request->capture();
     }
 
     public function buildKernel($args): void

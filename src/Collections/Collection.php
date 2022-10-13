@@ -35,7 +35,7 @@ class Collection implements ArrayAccess
         }
         elseif ($this->isJson($items))
         {
-            return json_decode($items->toJson(), true);
+            return json_decode($items, true);
         }
         elseif ($items instanceof JsonSerializable)
         {

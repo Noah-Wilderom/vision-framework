@@ -11,6 +11,8 @@ class Request
     public function __construct()
     {
         static::init();
+        // Capture the current request
+        $this->capture();
     }
 
     public static function init(): void
