@@ -4,6 +4,8 @@ namespace Vision\Core;
 
 use Vision\Config;
 use ReflectionMethod;
+use RuntimeException;
+use Vision\Http\Router;
 use Vision\Core\Request;
 use Vision\Facades\Route;
 use Vision\Console\Kernel;
@@ -44,7 +46,7 @@ class App
         return $this->request ?: false;
     }
 
-    public function build(): void
+    public function build()
     {
         //Initialize the Config handler
         static::$config = new Config\Handler;
@@ -52,15 +54,18 @@ class App
         // Initialize the Request
         $this->request = new Request();
 
-        $this->setRouting();
+        return $this->setRouting();
     }
 
-    private function setRouting(): void
+    private function setRouting()
     {
         require root_path() . DIRECTORY_SEPARATOR . 'routes.php';
 
         $routes = Route::getRoutes()->toArray();
         $uri = $this->getURL();
+
+        // print_r($routes);
+        // print_r("<br>");
 
         if (isset($routes[$uri]))
         {
@@ -68,17 +73,20 @@ class App
 
             $obj = new $route['controller'];
 
-            $method = new ReflectionMethod($obj, $route['action']);
+            $method = new ReflectionMethod($obj, $route['method']);
             foreach ($method->getParameters() as $arg)
             {
                 if ($arg->getType() instanceof Route)
                 {
-                    $obj->{$route['action']}($this->request);
+                    print_r('test route');
+                    return $obj->{$route['method']}($this->request);
                 }
             }
 
-            $obj->{$route['action']}();
+            return $obj->{$route['method']}();
         }
+
+        abort(404);
     }
 
     public function buildKernel($args): void
