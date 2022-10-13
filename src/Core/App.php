@@ -48,7 +48,7 @@ class App
         static::$config = new Config\Handler;
 
         // Initialize the Request
-        static::$request = new Request();
+        $this->request = new Request();
     }
 
     public function buildKernel($args): void
