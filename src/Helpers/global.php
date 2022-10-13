@@ -4,6 +4,7 @@ use Vision\Config;
 use Vision\Core\App;
 use Vision\Helpers\Dumper;
 use Vision\Collections\Collection;
+use Vision\Exceptions\ErrorException;
 
 if (!function_exists('app'))
 {
@@ -97,5 +98,19 @@ if (!function_exists('collect'))
     function collect($value = [])
     {
         return new Collection($value);
+    }
+}
+
+if (!function_exists('abort'))
+{
+    /**
+     * abort and show exception
+     *
+     * @param string value
+     * @return ErrorException
+     */
+    function abort($message, $code = 500)
+    {
+        return new ErrorException($message, $code);
     }
 }

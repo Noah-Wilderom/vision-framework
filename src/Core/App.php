@@ -57,9 +57,12 @@ class App
 
     private function setRouting(): void
     {
-        $routes = Route::getRoutes()->all()->toArray();
+        require root_path() . DIRECTORY_SEPARATOR . 'routes.php';
 
-        if ($uri = array_search($this->getURL(), array_keys($routes)))
+        $routes = Route::getRoutes()->toArray();
+        $uri = $this->getURL();
+
+        if (isset($routes[$uri]))
         {
             $route = $routes[$uri];
 
@@ -106,9 +109,9 @@ class App
 
     public function getURL()
     {
-        if ($this->request->getRequest()->get('url'))
+        if ($_SERVER['REQUEST_URI'])
         {
-            $url = rtrim($this->request->getRequest()->get('url'), '/');
+            $url = rtrim(strtolower($_SERVER['REQUEST_URI']), '/');
             // Filter de url van alles wat niet in een url thuishoort 
             $url = filter_var($url, FILTER_SANITIZE_URL);
             return $url;

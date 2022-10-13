@@ -25,9 +25,19 @@ class Request
         return in_array($item, static::$requestBlacklist) ? (bool) static::$requestBlacklist[] = $item : false;
     }
 
-    public function getRequest()
+    public function getGetRequest()
     {
-        return $this->request;
+        return collect($this->request->get('get'));
+    }
+
+    public function getPostRequest()
+    {
+        return collect($this->request->get('post'));
+    }
+
+    public function getServerRequest()
+    {
+        return collect($this->request->get('server'));
     }
 
     public function capture(): Request

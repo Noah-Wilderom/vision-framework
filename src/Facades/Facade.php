@@ -8,15 +8,54 @@ abstract class Facade
 {
 
     /**
-     * Get the registered name of the component.
+     * The resolved object instances.
      *
-     * @return string
-     *
-     * @throws \RuntimeException
+     * @var array
      */
-    protected static function getFacadeAccessor()
+    protected static $resolvedInstance;
+
+    /**
+     * Hotswap the underlying instance behind the facade.
+     *
+     * @param  mixed  $instance
+     * @return void
+     */
+    public static function swap($instance)
     {
-        throw new RuntimeException('Facade does not implement getFacadeAccessor method.');
+        static::$resolvedInstance[static::getFacadeAccessor()] = $instance;
+    }
+
+    protected static function resolveFacadeInstance($name)
+    {
+        if (isset(static::$resolvedInstance[$name]))
+        {
+            return static::$resolvedInstance[$name];
+        }
+
+        static::swap(new (static::getFacadeAccessor()));
+
+        return static::$resolvedInstance[$name];
+    }
+
+    /**
+     * Clear a resolved facade instance.
+     *
+     * @param  string  $name
+     * @return void
+     */
+    public static function clearResolvedInstance($name)
+    {
+        unset(static::$resolvedInstance[$name]);
+    }
+
+    /**
+     * Clear all of the resolved instances.
+     *
+     * @return void
+     */
+    public static function clearResolvedInstances()
+    {
+        static::$resolvedInstance = [];
     }
 
     /**
@@ -26,8 +65,19 @@ abstract class Facade
      */
     public static function getFacadeRoot()
     {
-        $class = static::getFacadeAccessor();
-        return new $class;
+        return static::resolveFacadeInstance(static::getFacadeAccessor());
+    }
+
+    /**
+     * Get the registered name of the component.
+     *
+     * @return string
+     *
+     * @throws \RuntimeException
+     */
+    protected static function getFacadeAccessor()
+    {
+        throw new RuntimeException('Facade does not implement getFacadeAccessor method.');
     }
 
     /**
