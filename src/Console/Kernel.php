@@ -17,6 +17,13 @@ class Kernel
         //
     }
 
+    private function loadCommands()
+    {
+        //
+        // $className = 'MyClass';
+        // $object = new $className;
+    }
+
     public static function add(array $options, callable $callback = null)
     {
         //

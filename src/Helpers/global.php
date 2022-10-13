@@ -1,8 +1,9 @@
 <?php
 
-use Vision\Core\App;
 use Vision\Config;
+use Vision\Core\App;
 use Vision\Helpers\Dumper;
+use Vision\Collections\Collection;
 
 if (!function_exists('app'))
 {
@@ -82,5 +83,19 @@ if (!function_exists('config'))
     function config(string $key = null)
     {
         return Config\Handler::getConfig($key);
+    }
+}
+
+if (!function_exists('collect'))
+{
+    /**
+     * Get a collect value
+     *
+     * @param string value
+     * @return Collection
+     */
+    function collect($value = [])
+    {
+        return new Collection($value);
     }
 }

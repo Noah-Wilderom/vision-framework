@@ -30,12 +30,34 @@ class Request
 
     private function captureCurrentRequest(): Request
     {
-        $request = [];
+        $request = collect();
 
-        $request['server'] = array_map(function ($req, $value)
-        {
-            if (!in_array($req, static::$requestBlacklist)) return [$req => $value];
-        }, array_keys($_SERVER), array_values($_SERVER));
+        $request->add('server', array_map(
+            function ($req, $value)
+            {
+                if (!in_array($req, static::$requestBlacklist)) return [$req => $value];
+            },
+            array_keys($_SERVER),
+            array_values($_SERVER)
+        ));
+
+        $request->add('get', array_map(
+            function ($req, $value)
+            {
+                if (!in_array($req, static::$requestBlacklist)) return [$req => $value];
+            },
+            array_keys($_GET),
+            array_values($_GET)
+        ));
+
+        $request->add('post', array_map(
+            function ($req, $value)
+            {
+                if (!in_array($req, static::$requestBlacklist)) return [$req => $value];
+            },
+            array_keys($_POST),
+            array_values($_POST)
+        ));
 
         return $this;
     }
