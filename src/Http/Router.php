@@ -2,8 +2,12 @@
 
 namespace Vision\Http;
 
+use Vision\Traits\Macroable;
+
 class Router
 {
+    use Macroable;
+
     protected $routes;
 
     protected $currentController;

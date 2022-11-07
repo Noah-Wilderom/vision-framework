@@ -6,9 +6,12 @@ use UnitEnum;
 use ArrayAccess;
 use Traversable;
 use JsonSerializable;
+use Vision\Traits\Macroable;
 
 class Collection implements ArrayAccess
 {
+
+    use Macroable;
 
     protected $items;
 
