@@ -24,10 +24,6 @@
     "symfony/finder": "^6.1"
   },
   "repositories": {
-    "packagist.org": false,
-    "private-packagist": {
-      "type": "composer",
-      "url": "https://repo.packagist.com/vision-framework/"
-    }
+    "packagist.org": true
   }
 }
