@@ -115,6 +115,16 @@ class App
         return static::$basePath . DIRECTORY_SEPARATOR . 'config';
     }
 
+    public static function getViewPath(): string
+    {
+        return static::$basePath . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR;
+    }
+
+    public static function makeView($view, $attributes = [])
+    {
+        require_once view_path() . $view . '.php';
+    }
+
     public function getURL()
     {
         if ($_SERVER['REQUEST_URI'])

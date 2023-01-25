@@ -46,6 +46,32 @@ if (!function_exists('root_path'))
     }
 }
 
+if (!function_exists('view_path'))
+{
+    /**
+     * Get the view path
+     *
+     * @return string path
+     */
+    function view_path()
+    {
+        return App::getViewPath();
+    }
+}
+
+if (!function_exists('view'))
+{
+    /**
+     * require the view component
+     *
+     * @return \Vision\Core\App
+     */
+    function view($view, $attributes = [])
+    {
+        return App::makeView($view, $attributes);
+    }
+}
+
 if (!function_exists('config_path'))
 {
     /**
