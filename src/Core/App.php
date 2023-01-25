@@ -122,6 +122,8 @@ class App
 
     public static function makeView($view, $attributes = [])
     {
+        extract($attributes);
+
         require_once view_path() . $view . '.php';
     }
 
