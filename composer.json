@@ -1,5 +1,5 @@
 {
-  "name": "vision/framework",
+  "name": "nwilderom/vision-framework",
   "description": "Another php laravel inspired framework.",
   "license": "MIT",
   "autoload": {
